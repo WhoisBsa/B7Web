@@ -1,0 +1,9 @@
+{
+  "files": [
+    "src/teste.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "ES6"
+  }
+}

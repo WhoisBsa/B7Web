@@ -1,0 +1,8 @@
+{
+  "name": "DevFit",
+  "version": "1.0.0",
+  "description": "App pra te fazer virar maromba",
+  "main": "index.js",
+  "author": "mxtheusbs",
+  "license": "MIT"
+}

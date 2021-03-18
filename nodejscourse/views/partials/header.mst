@@ -1,0 +1,29 @@
+<title>{{h.defaultPageTitle}}</title>
+<link rel="stylesheet" href="/assets/css/template.css" />
+<header>
+  <h1>Cabeçalho</h1>
+  {{#user}}
+    Olá, {{user.name}}!
+  {{/user}}
+  <hr>
+  <ul>
+    {{#h.menu}}
+      <li><a href="{{slug}}" >{{name}}</a></li>
+    {{/h.menu}}
+  </ul>
+  <hr>
+</header>
+
+{{#flashes}}
+  {{#success}}
+    <div class="warning">{{.}}</div>
+  {{/success}}
+
+  {{#error}}
+    <div class="warning">{{.}}</div>
+  {{/error}}
+
+  {{#info}}
+    <div class="warning">{{.}}</div>s
+  {{/info}}
+{{/flashes}}
