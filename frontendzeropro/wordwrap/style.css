@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.exemplo {
+  width: 150px;
+  height: 200px;
+  border: 1px solid #000;
+  word-wrap: break-word;
+  overflow-y: scroll;
+}
