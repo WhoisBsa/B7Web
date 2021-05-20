@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.topo {
+  height: 30px;
+  background-color: #333;
+  color: #fff;
+}
+
+.topoint {
+  width: 100%;
+  max-width: 1040px;
+  height: 30px;
+  margin: auto;
+}
+
+.topoleft {
+  width: 50%;
+  height: 30px;
+  float: left;
+}
+
+.toporight {
+  width: 50%;
+  height: 28px;
+  float: left;
+  margin-top: 2px;
+}
+
+.topoleft ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topoleft li {
+  height: 30px;
+  line-height: 30px;
+  float: left;
+  margin: 0 8px;
+}
+
+.topoleft li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.topoleft li .ativo {
+  color: #00f;
+}
+
+.topobusca {
+  width: 110px;
+  height: 26px;
+  outline: 0;
+}
+
+.toporight a,
+input {
+  float: right;
+}
+
+.toporight img {
+  margin: 0 3px;
+}
+
+.topo2 {
+  height: 95px;
+  color: #000;
+}
+
+.topo2int {
+  width: 100%;
+  max-width: 1040px;
+  height: 95px;
+  margin: auto;
+}
+
+.logo {
+  width: 230px;
+  height: 90px;
+  float: left;
+  margin-top: 5px;
+}
+
+.topo2 .banner {
+  width: 650px;
+  height: 80px;
+  float: right;
+  margin: 7px 0;
+  background-color: #f00;
+}
+
+.menu {
+  height: 40px;
+  background-color: #f00;
+}
+
+.menuint {
+  width: 100%;
+  max-width: 1040px;
+  height: 40px;
+  margin: auto;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 8px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.submenu {
+  width: 150px;
+  background-color: #f00;
+  position: absolute;
+  display: none;
+}
+
+.menu li:hover .submenu {
+  display: block;
+}
+
+.submenuitem {
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+}
+
+.submenuitem:hover {
+  background-color: #f55
+}
