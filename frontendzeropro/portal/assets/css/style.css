@@ -368,6 +368,10 @@
     max-width: 890px;
   }
 
+  #menu {
+    display: block !important;
+  }
+
   .leftside {
     width: 600px;
   }
@@ -395,6 +399,10 @@
   .topo2 .banner,
   .rightside {
     display: none;
+  }
+
+  #menu {
+    display: block !important;
   }
 
   .logo {
