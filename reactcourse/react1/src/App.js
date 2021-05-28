@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 // class App extends React.Component {
 //   render() {
@@ -12,10 +13,10 @@ function BemVindo(props) {
 
 function Avatar(props) {
   return (
-    <>
+    <div className="avatar">
       <img src={props.user.url} alt={props.user.name} />
       <spam>{props.user.name}</spam>
-    </>
+    </div>
   )
 }
 
