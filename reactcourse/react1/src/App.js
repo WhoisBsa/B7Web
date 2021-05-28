@@ -13,8 +13,8 @@ function BemVindo(props) {
 function Avatar(props) {
   return (
     <>
-      <img src={props.url} alt={props.name} />
-      <spam>{props.name}</spam>
+      <img src={props.user.url} alt={props.user.name} />
+      <spam>{props.user.name}</spam>
     </>
   )
 }
@@ -28,6 +28,11 @@ function App() {
 
   let imagem = 'https://www.google.com/google.jpg';
 
+  let user = {
+    url: imagem,
+    name: 'Matheus Barbosa',
+  }
+
   return <div>
     <div>Meu nome é {usuario.nome} e tenho {usuario.idade} anos</div>
     <img src={imagem} />
@@ -35,7 +40,7 @@ function App() {
     <BemVindo nome="João" />
     <BemVindo nome="Maria" />
 
-    <Avatar url={imagem} name="Google" />
+    <Avatar user={user} />
 
   </div>
 };
