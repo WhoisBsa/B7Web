@@ -1,5 +1,18 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
+
+import styled from 'styled-components';
+
+const Site = styled.div`
+  width: 400px;
+  height: 400px;
+  background-color: #0f0;
+`;
+
+const Title = styled.h1`
+  color:#f00;
+  font-size:18px;
+`;
 
 // class App extends React.Component {
 //   render() {
@@ -23,7 +36,7 @@ function Avatar(props) {
 function App() {
 
   let usuario = {
-    nome:'Matheus',
+    nome: 'Matheus',
     idade: 21,
   }
 
@@ -34,16 +47,23 @@ function App() {
     name: 'Matheus Barbosa',
   }
 
-  return <div>
-    <div>Meu nome é {usuario.nome} e tenho {usuario.idade} anos</div>
-    <img src={imagem} />
-    <BemVindo nome="Matheus" />
-    <BemVindo nome="João" />
-    <BemVindo nome="Maria" />
+  return (
+    <div>
+      <div>Meu nome é {usuario.nome} e tenho {usuario.idade} anos</div>
+      <img src={imagem} />
+      <BemVindo nome="Matheus" />
+      <BemVindo nome="João" />
+      <BemVindo nome="Maria" />
 
-    <Avatar user={user} />
+      <Avatar user={user} />
 
-  </div>
+      <Site>
+        <Title>Título bem legal</Title>
+      </Site>
+
+
+    </div>
+  )
 };
 
 export default App;
