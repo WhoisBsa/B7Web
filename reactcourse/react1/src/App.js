@@ -92,16 +92,36 @@ const Input = styled.input`
   border: 1px solid #ccc;
 `;
 
+// function App() {
+
+//   const [texto, setTexto] = useState('');
+
+//   return (
+//     <div>
+//       <Input type="text" placeholder="Digite qualquer coisa" value={texto} onChange={(e) => setTexto(e.target.value)} />
+//       <p>{texto.length} caracteres</p>
+//     </div>
+//   )
+// }
+
+
 function App() {
 
-  const [texto, setTexto] = useState('');
+  const [email, setEmail] = useState('');
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <div>
-      <Input type="text" placeholder="Digite qualquer coisa" value={texto} onChange={(e) => setTexto(e.target.value)} />
-      <p>{texto.length} caracteres</p>
+      <Input type="text" placeholder="Digite um email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      {email.length > 0 && (
+        <p>{email.length} caractere{email.length !== 1 ? 's' : ''}</p>
+      )}
+
+      {isLogged ?
+        <button>Sair</button>
+        :
+        <button>Fazer Login</button>}
     </div>
   )
 }
-
 export default App;
