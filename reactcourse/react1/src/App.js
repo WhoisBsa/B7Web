@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import './App.css';
 
 import styled from 'styled-components';
@@ -20,50 +20,66 @@ const Title = styled.h1`
 //   }
 // }
 
-function BemVindo(props) {
-  return <h1>Olá, {props.nome}!</h1>
-}
+// function BemVindo(props) {
+//   return <h1>Olá, {props.nome}!</h1>
+// }
 
-function Avatar(props) {
-  return (
-    <div className="avatar">
-      <img src={props.user.url} alt={props.user.name} />
-      <spam>{props.user.name}</spam>
-    </div>
-  )
-}
+// function Avatar(props) {
+//   return (
+//     <div className="avatar">
+//       <img src={props.user.url} alt={props.user.name} />
+//       <spam>{props.user.name}</spam>
+//     </div>
+//   )
+// }
+
+// function App() {
+
+//   let usuario = {
+//     nome: 'Matheus',
+//     idade: 21,
+//   }
+
+//   let imagem = 'https://www.google.com/google.jpg';
+
+//   let user = {
+//     url: imagem,
+//     name: 'Matheus Barbosa',
+//   }
+
+//   return (
+//     <div>
+//       <div>Meu nome é {usuario.nome} e tenho {usuario.idade} anos</div>
+//       <img src={imagem} />
+//       <BemVindo nome="Matheus" />
+//       <BemVindo nome="João" />
+//       <BemVindo nome="Maria" />
+
+//       <Avatar user={user} />
+
+//       <Site>
+//         <Title>Título bem legal</Title>
+//       </Site>
+
+
+//     </div>
+//   )
+// };
 
 function App() {
 
-  let usuario = {
-    nome: 'Matheus',
-    idade: 21,
-  }
+  const [contador, setContador] = useState(0);
 
-  let imagem = 'https://www.google.com/google.jpg';
-
-  let user = {
-    url: imagem,
-    name: 'Matheus Barbosa',
+  const incrementar = () => {
+    setContador(contador+1);
   }
 
   return (
     <div>
-      <div>Meu nome é {usuario.nome} e tenho {usuario.idade} anos</div>
-      <img src={imagem} />
-      <BemVindo nome="Matheus" />
-      <BemVindo nome="João" />
-      <BemVindo nome="Maria" />
-
-      <Avatar user={user} />
-
-      <Site>
-        <Title>Título bem legal</Title>
-      </Site>
-
-
+      <div>{contador} vezes</div>
+      <button onClick={incrementar}>Clique para aumentar</button>
     </div>
   )
-};
+}
 
 export default App;
