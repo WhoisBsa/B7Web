@@ -66,18 +66,40 @@ const Title = styled.h1`
 //   )
 // };
 
+// function App() {
+
+//   const [contador, setContador] = useState(0);
+
+//   const incrementar = () => {
+//     setContador(contador+1);
+//   }
+
+//   return (
+//     <div>
+//       <div>{contador} vezes</div>
+//       <button onClick={incrementar}>Clique para aumentar</button>
+
+//     </div>
+//   )
+// }
+
+
+const Input = styled.input`
+  width: 400px;
+  height: 30px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+`;
+
 function App() {
 
-  const [contador, setContador] = useState(0);
-
-  const incrementar = () => {
-    setContador(contador+1);
-  }
+  const [texto, setTexto] = useState('');
 
   return (
     <div>
-      <div>{contador} vezes</div>
-      <button onClick={incrementar}>Clique para aumentar</button>
+      <Input type="text" placeholder="Digite qualquer coisa" value={texto} onChange={(e) => setTexto(e.target.value)} />
+      <p>{texto.length} caracteres</p>
     </div>
   )
 }
