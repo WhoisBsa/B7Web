@@ -36,7 +36,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   {
     setName: (name) => dispatch({ type: 'SET_NAME', payload: { name } }),
-    increment: (contador) => dispatch({ type: 'SET_CONTADOR'})
+    increment: () => dispatch({ type: 'SET_CONTADOR'})
   }
 )
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
