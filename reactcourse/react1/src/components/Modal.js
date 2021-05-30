@@ -7,16 +7,20 @@ const ModalBackground = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 90;
-  background-color: rgba(0,0,0, 0.7)
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
 `;
 
 const ModalArea = styled.div`
-  background-color: #ccc;
-  padding: 10px;
+  background-color: #fff;
+  padding: 10px 50px;
+  border-radius: 5px;
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 `;
 
 function Modal(props) {
