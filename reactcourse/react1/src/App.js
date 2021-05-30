@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import './App.css';
 
 import styled from 'styled-components';
+import Modal from './components/Modal';
 import SearchBox from './components/SearchBox';
 
 const Site = styled.div`
@@ -256,19 +257,32 @@ const Input = styled.input`
 //   )
 // }
 
-function App() {
-  const [name, setName] = useState(localStorage.getItem('name'));
+// function App() {
+//   const [name, setName] = useState(localStorage.getItem('name'));
 
-  useEffect(() => {
-    localStorage.setItem('name', name);
-  }, [name])
+//   useEffect(() => {
+//     localStorage.setItem('name', name);
+//   }, [name])
+
+//   return (
+//     <div>
+//         <input 
+//           type="text" 
+//           value={name} onChange={(e) => setName(e.target.value)}
+//         />
+//     </div>
+//   )
+// }
+
+function App() {
+  const [modalVisible, setModalVisible] = useState(false)
 
   return (
     <div>
-        <input 
-          type="text" 
-          value={name} onChange={(e) => setName(e.target.value)}
-        />
+      <button onClick={() => setModalVisible(true)}>Abrir Modal</button>
+      <Modal visible={modalVisible} setVisible={setModalVisible}>
+        <h1>Testando 1, 2, 3...</h1>
+      </Modal>
     </div>
   )
 }
