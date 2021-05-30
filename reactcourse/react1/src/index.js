@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Reducers from './reducers';
 
-const store = createStore();
+const store = createStore(Reducers);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,7 +14,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElemestorentById('root')
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
