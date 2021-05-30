@@ -219,7 +219,13 @@ function App() {
   }, []);
 
   const addItem = (newItem) => {
-   setList([...list, {title:newItem, done: false}]); 
+    setList([...list, { title: newItem, done: false }]);
+  }
+
+  const handleToggleDone = (index) => {
+    let newList = [...list];
+    newList[index].done = !newList[index].done;
+    setList(newList);
   }
 
   return (
@@ -237,9 +243,12 @@ function App() {
         {list.map((item, index) => (
           <li key={index}>
             {item.done
-              ? <del>{item.title}</del>
+              ? <p><del>{item.title}</del></p>
               : <p>{item.title}</p>
             }
+            <button onClick={() => handleToggleDone(index)}>
+              {item.done ? 'Desmarcar' : 'Marcar'}
+            </button>
           </li>
         ))}
       </ul>
