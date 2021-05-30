@@ -165,17 +165,43 @@ const Input = styled.input`
 //   )
 // }
 
+// function App() {
+//   return (
+//     <div>
+//       <h1>Lista de Tarefas</h1>
+
+//       <SearchBox frasePadrao="Faça sua busca..." />
+
+//       <SearchBox frasePadrao="Digite seu nome" />
+
+//       <SearchBox />
+
+//     </div>
+//   )
+// }
+
 function App() {
+  const [searchText, setSearchText] = useState('');
+  const handleSearchInput = (novoTexto) => {
+    setSearchText(novoTexto);
+  }
+
   return (
     <div>
       <h1>Lista de Tarefas</h1>
 
-      <SearchBox frasePadrao="Faça sua busca..." />
+      <SearchBox
+        frasePadrao="Faça sua busca..."
+        onChangeText={handleSearchInput}
+      />
 
-      <SearchBox frasePadrao="Digite seu nome" />
+      <SearchBox
+        frasePadrao={searchText}
+      />
 
-      <SearchBox />
+      <hr />
 
+      <p>Testo procurado: {searchText}</p>
     </div>
   )
 }
