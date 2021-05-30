@@ -216,10 +216,10 @@ function App() {
       { title: 'Comer bolo', done: false },
       { title: 'Beber água', done: true },
     ]);
-  }, [])
+  }, []);
 
-  const handleSearchInput = (novoTexto) => {
-    setSearchText(novoTexto);
+  const addItem = (newItem) => {
+   setList([...list, {title:newItem, done: false}]); 
   }
 
   return (
@@ -227,8 +227,8 @@ function App() {
       <h1>Lista de Tarefas</h1>
 
       <SearchBox
-        frasePadrao="Faça sua busca..."
-        onChangeText={handleSearchInput}
+        frasePadrao="Adicionar item"
+        onEnter={addItem}
       />
 
       <hr />
