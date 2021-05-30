@@ -180,8 +180,44 @@ const Input = styled.input`
 //   )
 // }
 
+// function App() {
+//   const [searchText, setSearchText] = useState('');
+//   const handleSearchInput = (novoTexto) => {
+//     setSearchText(novoTexto);
+//   }
+
+//   return (
+//     <div>
+//       <h1>Lista de Tarefas</h1>
+
+//       <SearchBox
+//         frasePadrao="Faça sua busca..."
+//         onChangeText={handleSearchInput}
+//       />
+
+//       <SearchBox
+//         frasePadrao={searchText}
+//       />
+
+//       <hr />
+
+//       <p>Testo procurado: {searchText}</p>
+//     </div>
+//   )
+// }
+
 function App() {
   const [searchText, setSearchText] = useState('');
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    setList([
+      { title: 'Comprar o bolo', done: false },
+      { title: 'Comer bolo', done: false },
+      { title: 'Beber água', done: true },
+    ]);
+  }, [])
+
   const handleSearchInput = (novoTexto) => {
     setSearchText(novoTexto);
   }
@@ -195,13 +231,18 @@ function App() {
         onChangeText={handleSearchInput}
       />
 
-      <SearchBox
-        frasePadrao={searchText}
-      />
-
       <hr />
 
-      <p>Testo procurado: {searchText}</p>
+      <ul>
+        {list.map((item, index) => (
+          <li key={index}>
+            {item.done
+              ? <del>{item.title}</del>
+              : <p>{item.title}</p>
+            }
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
