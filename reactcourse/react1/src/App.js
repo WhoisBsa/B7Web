@@ -105,22 +105,46 @@ const Input = styled.input`
 // }
 
 
-function App() {
+// function App() {
 
-  const [email, setEmail] = useState('');
-  const [isLogged, setIsLogged] = useState(false);
+//   const [email, setEmail] = useState('');
+//   const [isLogged, setIsLogged] = useState(false);
+
+//   return (
+//     <div>
+//       <Input type="text" placeholder="Digite um email" value={email} onChange={(e) => setEmail(e.target.value)} />
+//       {email.length > 0 && (
+//         <p>{email.length} caractere{email.length !== 1 ? 's' : ''}</p>
+//       )}
+
+//       {isLogged ?
+//         <button>Sair</button>
+//         :
+//         <button>Fazer Login</button>}
+//     </div>
+//   )
+// }
+
+function App() {
+  const [conta, setConta] = useState('');
+  const [gorjeta, setGorjeta] = useState(10);
 
   return (
     <div>
-      <Input type="text" placeholder="Digite um email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      {email.length > 0 && (
-        <p>{email.length} caractere{email.length !== 1 ? 's' : ''}</p>
-      )}
+      <h1>Calculadora de Gorjeta</h1>
+      <p>Quanto deu a conta?</p>
+      <Input type='number' value={conta} onChange={(e) => { setConta(e.target.value) }} />
+      <p>Qual a porcentagem de gorjeta?</p>
+      <Input type='number' value={gorjeta} onChange={(e) => { setGorjeta(e.target.value) }} />
+      <hr />
 
-      {isLogged ?
-        <button>Sair</button>
-        :
-        <button>Fazer Login</button>}
+      {conta.length > 0 && (
+        <div>
+          <p>Sub-total: {conta}</p>
+          <p>Gorjeta ({gorjeta}%): R$ {(conta * (gorjeta / 100)).toFixed(2)}</p>
+          <strong>Total: R$ {(conta * (gorjeta/100 + 1)).toFixed(2)}</strong>
+        </div>
+      )}
     </div>
   )
 }
