@@ -7,6 +7,7 @@ import Modal from './components/Modal';
 import SearchBox from './components/SearchBox';
 import Home from './pages/Home';
 import Sobre from './pages/Sobre';
+import Login from './pages/Login';
 import Categoria from './pages/Categoria';
 
 const Site = styled.div`
@@ -291,6 +292,15 @@ const Input = styled.input`
 //   )
 // }
 
+const isLogged = false;
+
+const PrivateRoute = ({ children, ...rest}) => {
+  return (
+    <Route {...rest}>
+      {isLogged ? children : <Redirect to="/login"/>} 
+    </Route>
+  );
+}
 
 function App() {
 
@@ -302,9 +312,6 @@ function App() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/categoria?tipo=esportes">Esportes</Link></li>
-            <li><Link to="/categoria?tipo=noticias">Notícias</Link></li>
-            <li><Link to="/categoria?tipo=viagem">Viagem</Link></li>
           </ul>
         </nav>
       </header>
@@ -315,17 +322,17 @@ function App() {
           <Home />
         </Route>
 
-        <Route path="/sobre">
+        <Route exact path="/login">
+          <Login />
+        </Route>
+
+        {/* <Route path="/sobre" >
+          {isLogged ? <Sobre /> : <Redirect to="/login" />}
+        </Route> */}
+
+        <PrivateRoute path="/sobre" >
           <Sobre />
-        </Route>
-
-        <Route path="/quem-somos">
-          <Redirect to="/sobre" />
-        </Route>
-
-        <Route path="/categoria">
-          <Categoria />
-        </Route>
+        </PrivateRoute>
 
         <Route path="*">
           <h4>Página não encontrada!</h4>

@@ -11,7 +11,7 @@ function Home() {
   return (
     <div>
       <h4>Página HOME</h4>
-      <button onclick={handleButton}>Ir para página SOBRE</button>
+      <button onClick={handleButton}>Ir para página SOBRE</button>
     </div>
   );
 }
