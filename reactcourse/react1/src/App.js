@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
 // import './App.css';
 
 import styled from 'styled-components';
@@ -319,8 +319,16 @@ function App() {
           <Sobre />
         </Route>
 
+        <Route path="/quem-somos">
+          <Redirect to="/sobre" />
+        </Route>
+
         <Route path="/categoria">
           <Categoria />
+        </Route>
+
+        <Route path="*">
+          <h4>Página não encontrada!</h4>
         </Route>
       </Switch>
       <hr />
