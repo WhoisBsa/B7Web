@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import './App.css';
 
 import styled from 'styled-components';
@@ -125,26 +125,41 @@ const Input = styled.input`
 //   )
 // }
 
+// function App() {
+//   const [conta, setConta] = useState('');
+//   const [gorjeta, setGorjeta] = useState(10);
+
+//   return (
+//     <div>
+//       <h1>Calculadora de Gorjeta</h1>
+//       <p>Quanto deu a conta?</p>
+//       <Input type='number' value={conta} onChange={(e) => { setConta(e.target.value) }} />
+//       <p>Qual a porcentagem de gorjeta?</p>
+//       <Input type='number' value={gorjeta} onChange={(e) => { setGorjeta(e.target.value) }} />
+//       <hr />
+
+//       {conta.length > 0 && (
+//         <div>
+//           <p>Sub-total: {conta}</p>
+//           <p>Gorjeta ({gorjeta}%): R$ {(conta * (gorjeta / 100)).toFixed(2)}</p>
+//           <strong>Total: R$ {(conta * (gorjeta/100 + 1)).toFixed(2)}</strong>
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
+
 function App() {
-  const [conta, setConta] = useState('');
-  const [gorjeta, setGorjeta] = useState(10);
+  const [contagem, setContagem] = useState(0);
+
+  useEffect(() => {
+    document.title = `Contagem: ${contagem}`;
+  }, [contagem])
 
   return (
     <div>
-      <h1>Calculadora de Gorjeta</h1>
-      <p>Quanto deu a conta?</p>
-      <Input type='number' value={conta} onChange={(e) => { setConta(e.target.value) }} />
-      <p>Qual a porcentagem de gorjeta?</p>
-      <Input type='number' value={gorjeta} onChange={(e) => { setGorjeta(e.target.value) }} />
-      <hr />
-
-      {conta.length > 0 && (
-        <div>
-          <p>Sub-total: {conta}</p>
-          <p>Gorjeta ({gorjeta}%): R$ {(conta * (gorjeta / 100)).toFixed(2)}</p>
-          <strong>Total: R$ {(conta * (gorjeta/100 + 1)).toFixed(2)}</strong>
-        </div>
-      )}
+      <h1>Contagem: {contagem}</h1>
+      <button onClick={() => setContagem(contagem + 1)}>Aumentar Número</button>
     </div>
   )
 }
