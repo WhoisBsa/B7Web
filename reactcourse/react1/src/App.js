@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import './App.css';
 
 import styled from 'styled-components';
+import SearchBox from './components/SearchBox';
 
 const Site = styled.div`
   width: 400px;
@@ -149,18 +150,34 @@ const Input = styled.input`
 //   )
 // }
 
+// function App() {
+//   const [contagem, setContagem] = useState(0);
+
+//   useEffect(() => {
+//     document.title = `Contagem: ${contagem}`;
+//   }, [contagem])
+
+//   return (
+//     <div>
+//       <h1>Contagem: {contagem}</h1>
+//       <button onClick={() => setContagem(contagem + 1)}>Aumentar Número</button>
+//     </div>
+//   )
+// }
+
 function App() {
-  const [contagem, setContagem] = useState(0);
-
-  useEffect(() => {
-    document.title = `Contagem: ${contagem}`;
-  }, [contagem])
-
   return (
     <div>
-      <h1>Contagem: {contagem}</h1>
-      <button onClick={() => setContagem(contagem + 1)}>Aumentar Número</button>
+      <h1>Lista de Tarefas</h1>
+
+      <SearchBox frasePadrao="Faça sua busca..." />
+
+      <SearchBox frasePadrao="Digite seu nome" />
+
+      <SearchBox />
+
     </div>
   )
 }
+
 export default App;
