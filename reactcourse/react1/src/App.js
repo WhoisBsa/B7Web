@@ -206,52 +206,69 @@ const Input = styled.input`
 //   )
 // }
 
+// function App() {
+//   const [searchText, setSearchText] = useState('');
+//   const [list, setList] = useState([]);
+
+//   useEffect(() => {
+//     setList([
+//       { title: 'Comprar o bolo', done: false },
+//       { title: 'Comer bolo', done: false },
+//       { title: 'Beber água', done: true },
+//     ]);
+//   }, []);
+
+//   const addItem = (newItem) => {
+//     setList([...list, { title: newItem, done: false }]);
+//   }
+
+//   const handleToggleDone = (index) => {
+//     let newList = [...list];
+//     newList[index].done = !newList[index].done;
+//     setList(newList);
+//   }
+
+//   return (
+//     <div>
+//       <h1>Lista de Tarefas</h1>
+
+//       <SearchBox
+//         frasePadrao="Adicionar item"
+//         onEnter={addItem}
+//       />
+
+//       <hr />
+
+//       <ul>
+//         {list.map((item, index) => (
+//           <li key={index}>
+//             {item.done
+//               ? <p><del>{item.title}</del></p>
+//               : <p>{item.title}</p>
+//             }
+//             <button onClick={() => handleToggleDone(index)}>
+//               {item.done ? 'Desmarcar' : 'Marcar'}
+//             </button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   )
+// }
+
 function App() {
-  const [searchText, setSearchText] = useState('');
-  const [list, setList] = useState([]);
+  const [name, setName] = useState(localStorage.getItem('name'));
 
   useEffect(() => {
-    setList([
-      { title: 'Comprar o bolo', done: false },
-      { title: 'Comer bolo', done: false },
-      { title: 'Beber água', done: true },
-    ]);
-  }, []);
-
-  const addItem = (newItem) => {
-    setList([...list, { title: newItem, done: false }]);
-  }
-
-  const handleToggleDone = (index) => {
-    let newList = [...list];
-    newList[index].done = !newList[index].done;
-    setList(newList);
-  }
+    localStorage.setItem('name', name);
+  }, [name])
 
   return (
     <div>
-      <h1>Lista de Tarefas</h1>
-
-      <SearchBox
-        frasePadrao="Adicionar item"
-        onEnter={addItem}
-      />
-
-      <hr />
-
-      <ul>
-        {list.map((item, index) => (
-          <li key={index}>
-            {item.done
-              ? <p><del>{item.title}</del></p>
-              : <p>{item.title}</p>
-            }
-            <button onClick={() => handleToggleDone(index)}>
-              {item.done ? 'Desmarcar' : 'Marcar'}
-            </button>
-          </li>
-        ))}
-      </ul>
+        <input 
+          type="text" 
+          value={name} onChange={(e) => setName(e.target.value)}
+        />
     </div>
   )
 }
