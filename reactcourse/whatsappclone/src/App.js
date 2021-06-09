@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+
+import Api from './Api';
 
 import ChatListItem from './components/ChatListItem';
 import ChatIntro from './components/ChatIntro';
@@ -10,21 +12,37 @@ import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
+import Login from './components/Login';
 
 export default function App() {
-  const [chatlist, setChatlist] = useState([
-    { chatId: 1, title: 'Fulano de Tal', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
-    { chatId: 2, title: 'Beltrano', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
-    { chatId: 3, title: 'Ciclano', image: 'https://www.w3schools.com/howto/img_avatar2.png' },
-    { chatId: 4, title: 'Giulia', image: 'https://www.w3schools.com/howto/img_avatar2.png' }
-  ])
+  const [chatlist, setChatlist] = useState([])
   const [activeChat, setActiveChat] = useState({});
-  const [user, setUser] = useState({
-    id: 1234,
-    avatar: 'https://www.w3schools.com/howto/img_avatar2.png',
-    name: 'Matheus Barbosa'
-  });
+  const [user, setUser] = useState(null);
   const [showNewChat, setShowNewChat] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      let unsub = Api.onChatList(user.id, setChatlist);
+      return unsub;
+    }
+  }, [user]);
+
+  const handleLoginData = async (u) => {
+    let newUser = {
+      id: u.uid,
+      name: u.displayName,
+      avatar: u.photoURL,
+    }
+    await Api.addUser(newUser);
+    setUser(newUser);
+  }
+
+  if (!user) {
+    return (
+      <Login onReceive={handleLoginData} />
+    );
+  }
+
 
   return (
     <div className="app-window">
@@ -66,7 +84,7 @@ export default function App() {
 
       <div className="contentarea">
         {activeChat.chatId !== undefined ? (
-          <ChatWindow user={user} />
+          <ChatWindow user={user} data={activeChat} />
         ) : (
           <ChatIntro />
         )}

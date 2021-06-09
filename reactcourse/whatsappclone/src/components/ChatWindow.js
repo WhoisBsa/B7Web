@@ -11,8 +11,9 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import CloseIcon from '@material-ui/icons/Close';
 import SendIcon from '@material-ui/icons/Send';
 import MicIcon from '@material-ui/icons/Mic';
+import Api from '../Api';
 
-export default function ChatWindow({ user }) {
+export default function ChatWindow({ user, data }) {
   let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   let recognition = SpeechRecognition ? new SpeechRecognition() : null;
 
@@ -20,57 +21,37 @@ export default function ChatWindow({ user }) {
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [listening, setListening] = useState(false);
   const [text, setText] = useState('');
-  const [list, setList] = useState([
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-    { author: 123, body: 'bla bla bla' },
-    { author: 123, body: 'bla bla blablablablabla' },
-    { author: 1234, body: 'bla bla ' },
-  ]);
+  const [list, setList] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     if (body.current.scrollHeight > body.current.offsetHeight) {
       body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight;
     }
-  }, [list])
+  }, [list]);
+
+  useEffect(() => {
+    setList([]);
+    let unsub = Api.onChatContent(data.chatId, setList, setUsers);
+    return unsub;
+  }, [data.chatId]);
 
   const handleEmojiClick = (e, emojiObject) => {
     setText(text + emojiObject.emoji)
   }
+  
+  const handleInputKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      handleSendClick();
+    }
+  }
 
   const handleSendClick = () => {
-
+    if (text) {
+      Api.sendMessage(data, user.id, 'text', text, users);
+      setText('');
+      setEmojiOpen(false);
+    }
   }
 
   const handleMicClick = () => {
@@ -92,8 +73,8 @@ export default function ChatWindow({ user }) {
     <div className="chatWindow">
       <div className="chatWindow-header">
         <div className="chatWindow-headerinfo">
-          <img className="chatWindow-avatar" src="https://www.w3schools.com/howto/img_avatar2.png" />
-          <div className="chatWindow-name">Fulano de Tal</div>
+          <img className="chatWindow-avatar" src={data.image} />
+          <div className="chatWindow-name">{data.title}</div>
         </div>
         <div className="chatWindow-headerbuttons">
           <div className="chatWindow-btn">
@@ -151,6 +132,7 @@ export default function ChatWindow({ user }) {
           <input
             className="chatWindow-input"
             value={text}
+            onKeyUp={handleInputKeyUp}
             onChange={(e) => setText(e.target.value)}
             placeholder="Digite uma mensagem"
             type="text"
